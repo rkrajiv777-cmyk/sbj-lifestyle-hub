@@ -23,6 +23,7 @@
     @media(max-width:1000px){ .grid{grid-template-columns:1fr;} }
     .mini{font-size:11px;color:#666;}
     .invoiceArea{display:none;}
+    .topNote{margin-top:6px;}
     @media print{
       body{margin:0;}
       .noPrint{display:none!important;}
@@ -53,10 +54,13 @@
 
   <div class="noPrint">
     <h1>MLM Price + VP Cart</h1>
-    <div class="muted">
+    <div class="muted topNote">
       Slabs: <b>15% / 25% / 35% / 42% / 50%</b>
       • Default: fixed slab prices (Admin set) • Custom % = MRP se calculate
-      • Admin: <span class="pill">admin.html</span>
+      • Auto-load: <span class="pill">price-list-full.json</span>
+    </div>
+    <div class="muted topNote">
+      If you open in a new browser/device, products will auto-load (no manual import needed).
     </div>
   </div>
 
@@ -212,15 +216,36 @@ function money(x){ return Math.round(num(x)); }
 function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
 function esc(s){ return String(s).replace(/[&<>"']/g, m => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[m])); }
 
-function loadProducts(){
+/* ------------------ AUTO LOAD PRODUCTS ------------------ */
+async function loadProducts(){
   const p = safeParse(localStorage.getItem(KEY_PRODUCTS), null);
-  if(!Array.isArray(p) || p.length===0){
-    localStorage.setItem(KEY_PRODUCTS, JSON.stringify(DEFAULT_PRODUCTS));
-    return DEFAULT_PRODUCTS;
+
+  // If already saved in this browser, use it
+  if(Array.isArray(p) && p.length > 0){
+    p.forEach(x => { if(!x.slabPrices) x.slabPrices = {}; });
+    return p;
   }
-  p.forEach(x => { if(!x.slabPrices) x.slabPrices = {}; });
-  return p;
+
+  // Otherwise auto-fetch from hosted JSON (same folder)
+  try{
+    const res = await fetch("./price-list-full.json", { cache: "no-store" });
+    if(!res.ok) throw new Error("price-list-full.json not found");
+    const data = await res.json();
+
+    if(Array.isArray(data) && data.length > 0){
+      data.forEach(x => { if(!x.slabPrices) x.slabPrices = {}; });
+      localStorage.setItem(KEY_PRODUCTS, JSON.stringify(data));
+      return data;
+    }
+  }catch(e){
+    console.warn("Auto-load failed:", e);
+  }
+
+  // fallback sample
+  localStorage.setItem(KEY_PRODUCTS, JSON.stringify(DEFAULT_PRODUCTS));
+  return DEFAULT_PRODUCTS;
 }
+
 function loadCart(){ return safeParse(localStorage.getItem(KEY_CART), []); }
 function saveCart(c){ localStorage.setItem(KEY_CART, JSON.stringify(c)); }
 
@@ -235,14 +260,17 @@ function loadSettings(){
 
 /* ------------------ PRICE LOGIC ------------------ */
 function unitPrice(product, slabPct, customPct){
+  // custom % -> MRP based
   if(customPct !== "" && customPct !== null && customPct !== undefined){
     const pct = clamp(num(customPct), 0, 95);
     return num(product.mrp) * (1 - pct/100);
   }
+  // slab fixed price
   const sp = product.slabPrices?.[String(slabPct)];
   if(sp !== undefined && sp !== null && sp !== ""){
     return num(sp);
   }
+  // fallback: % from MRP
   return num(product.mrp) * (1 - num(slabPct)/100);
 }
 
@@ -279,8 +307,8 @@ function calcTotals(products, cart){
 }
 
 /* ------------------ UI ------------------ */
-let products = loadProducts();
-let cart = safeParse(localStorage.getItem(KEY_CART), []);
+let products = [];
+let cart = [];
 
 const productsBody = document.getElementById("productsBody");
 const cartBody = document.getElementById("cartBody");
@@ -297,7 +325,7 @@ function renderProducts(){
   for(const p of list){
     const tr = document.createElement("tr");
     tr.innerHTML = `
-      <td><b>${esc(p.name)}</b><div class="mini">Slab prices saved in admin</div></td>
+      <td><b>${esc(p.name)}</b><div class="mini">Slab prices saved in admin / JSON</div></td>
       <td class="right">₹ ${money(p.mrp)}</td>
       <td class="right">${num(p.vp).toFixed(2)}</td>
       <td class="right"><button class="btnPrimary">Add</button></td>
@@ -424,8 +452,9 @@ function addToCart(productId){
   renderCart(); renderTotals();
 }
 
-document.getElementById("reloadBtn").onclick = () => {
-  products = loadProducts();
+document.getElementById("reloadBtn").onclick = async () => {
+  // force re-load from localStorage; if empty, it will auto-fetch JSON
+  products = await loadProducts();
   renderProducts();
   renderCart();
   renderTotals();
@@ -444,11 +473,14 @@ searchEl.oninput = renderProducts;
 document.getElementById("manualShipping").oninput = renderTotals;
 
 /* ------------------ INIT ------------------ */
-products = loadProducts();
-cart = loadCart();
-renderProducts();
-renderCart();
-renderTotals();
+(async () => {
+  products = await loadProducts();
+  cart = loadCart();
+  renderProducts();
+  renderCart();
+  renderTotals();
+})();
 </script>
+
 </body>
 </html>
