@@ -1,432 +1,441 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SBJ Lifestyle Hub - Fitness & Wellness</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Lightbox CSS for full image zoom -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet">
-    <style>
-        .card-img-top {
-    height: 300px !important;  /* Fixed height - badi images crop ho jaayengi */
-    object-fit: cover !important;  /* Image distort nahi hogi, center crop */
-    object-position: center;  /* Face/body center mein rahega */
-    border-radius: 10px 10px 0 0;  /* Top corners rounded for better look */
-}
-        body { font-family: 'Poppins', sans-serif; }
-        .hero {
-    background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.65)), url('https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.text-gradient {
-    background: linear-gradient(90deg, #00ff88, #00ccff, #ff66ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 700;
-    font-size: 4.5rem;
-    line-height: 1.1;
-}
-
-/* Yeh responsive part add kar do - title cut nahi hoga */
-@media (max-width: 1200px) {
-    .text-gradient { font-size: 4rem; }
-}
-@media (max-width: 992px) {
-    .text-gradient { font-size: 3.5rem; }
-}
-@media (max-width: 768px) {
-    .text-gradient { font-size: 3rem; }
-}
-@media (max-width: 576px) {
-    .text-gradient { font-size: 2.4rem; }
-}
-    </style>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>MLM Price + VP Cart</title>
+  <style>
+    body{font-family:Arial, sans-serif;margin:16px;}
+    h1{margin:0 0 6px;}
+    .muted{color:#666;font-size:12px;}
+    .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+    .card{border:1px solid #ddd;border-radius:12px;padding:12px;box-shadow:0 1px 6px rgba(0,0,0,.04);}
+    table{width:100%;border-collapse:collapse;}
+    th,td{border-bottom:1px solid #eee;padding:8px;vertical-align:top;}
+    th{background:#fafafa;}
+    input,select,button{padding:8px;border-radius:10px;border:1px solid #ccc;}
+    button{cursor:pointer;background:#fff;}
+    .btnPrimary{background:#111;color:#fff;border-color:#111;}
+    .right{text-align:right;}
+    .danger{color:#b00020;}
+    .pill{display:inline-block;background:#f3f3f3;border-radius:999px;padding:3px 10px;font-size:12px;}
+    .grid{display:grid;grid-template-columns:1fr 1.15fr;gap:12px;}
+    @media(max-width:1000px){ .grid{grid-template-columns:1fr;} }
+    .mini{font-size:11px;color:#666;}
+    .invoiceArea{display:none;}
+    @media print{
+      body{margin:0;}
+      .noPrint{display:none!important;}
+      .invoiceArea{display:block;}
+      .card{border:none;box-shadow:none;}
+    }
+  </style>
 </head>
 <body>
-
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">SBJ Lifestyle Hub</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#videos">Videos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#challenges">21 Days Winners</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#superstar">Super Star</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#newsletter">Subscribe</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#register">Register Now</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-<!-- Hero Section -->
-<section class="hero text-center">
-    <div class="container h-100 d-flex flex-column justify-content-center align-items-center position-relative">
-        <h1 class="fw-bold text-white mb-4 animate__animated animate__fadeInDown text-center">
-    <span class="text-gradient d-block">SBJ Lifestyle Hub</span>
-</h1>
-        <p class="lead text-white mb-5 px-3 animate__animated animate__fadeInUp" style="max-width: 900px; text-shadow: 0 2px 10px rgba(0,0,0,0.8);">
-            Transform Your Life with Fitness, Nutrition & Challenges – Inspired by Rajiv.kfit
-        </p>
-        <div class="animate__animated animate__fadeInUp animate__delay-1s">
-            <a href="#register" class="btn btn-lg btn-primary shadow-lg px-5 py-3 rounded-pill glow-button">
-                <strong>Join the 21 Days Challenge Now</strong>
-            </a>
-        </div>
-        <div class="mt-4 animate__animated animate__fadeInUp animate__delay-2s">
-            <p class="text-white">Real Results • Real People • Real Transformations</p>
-        </div>
+  <div class="noPrint">
+    <h1>MLM Price + VP Cart</h1>
+    <div class="muted">
+      Slabs: <b>15% / 25% / 35% / 42% / 50%</b>
+      • Default: fixed slab prices (Admin set) • Custom % = MRP se calculate
+      • Admin: <span class="pill">admin.html</span>
     </div>
-</section>
+  </div>
 
-    <!-- Features Section -->
-    <section class="section" id="features">
-        <div class="container">
-            <h2 class="text-center mb-5">Our Features</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card border-0 shadow">
-                        <img src="https://images.unsplash.com/photo-1515376721779-7db0b7b2f0e9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Fashion">
-                        <div class="card-body">
-                            <h5>Fashion & Style</h5>
-                            <p>Latest trends aur outfit ideas</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card border-0 shadow">
-                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Health">
-                        <div class="card-body">
-                            <h5>Health & Fitness</h5>
-                            <p>Workout tips aur nutrition guides</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card border-0 shadow">
-                        <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="card-img-top" alt="Wellness">
-                        <div class="card-body">
-                            <h5>Wellness & Mindfulness</h5>
-                            <p>Meditation aur self-care ideas</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <div class="grid" style="margin-top:12px;">
+    <!-- PRODUCTS -->
+    <div class="card noPrint">
+      <div class="row" style="justify-content:space-between;">
+        <h3 style="margin:0;">Products</h3>
+        <button id="reloadBtn">Reload</button>
+      </div>
 
-    <!-- Testimonials Section -->
-    <section class="section bg-light" id="testimonials">
-        <div class="container">
-            <h2 class="text-center mb-5">Testimonials</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="testimonial-card p-4 text-center">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" class="rounded-circle mb-3" alt="User 1" style="width:100px;height:100px;">
-                        <p>"SBJ ne meri life badal di! 21 days challenge se 10kg loss kiya."</p>
-                        <h5>- Priya S.</h5>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="testimonial-card p-4 text-center">
-                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" class="rounded-circle mb-3" alt="User 2" style="width:100px;height:100px;">
-                        <p>"Best fitness tips, videos se motivated rahta hoon daily."</p>
-                        <h5>- Raj K.</h5>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="testimonial-card p-4 text-center">
-                        <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" class="rounded-circle mb-3" alt="User 3" style="width:100px;height:100px;">
-                        <p>"Super star award jeetna mera sapna tha – ab reality!"</p>
-                        <h5>- Anita M.</h5>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+      <div class="row" style="margin-top:10px;">
+        <input id="search" placeholder="Search product..." style="flex:1;min-width:240px;"/>
+        <div class="mini">Products count: <span id="pCount">0</span></div>
+      </div>
 
-    <!-- Videos Section -->
-    <section class="section" id="videos">
-        <div class="container">
-            <h2 class="text-center mb-5">Workout Videos</h2>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card border-0 shadow">
-                        <iframe width="100%" height="200" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Sample Video 1" frameborder="0" allowfullscreen></iframe>
-                        <div class="card-body">
-                            <h5>Beginner Workout</h5>
-                            <p>Start your fitness journey here.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card border-0 shadow">
-                        <iframe width="100%" height="200" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Sample Video 2" frameborder="0" allowfullscreen></iframe>
-                        <div class="card-body">
-                            <h5>21 Days Challenge Day 1</h5>
-                            <p>Daily motivation reels.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card border-0 shadow">
-                        <iframe width="100%" height="200" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Sample Video 3" frameborder="0" allowfullscreen></iframe>
-                        <div class="card-body">
-                            <h5>Nutrition Tips</h5>
-                            <p>SBJ style eating guide.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-   <!-- 21 Days Challenge Winners -->
-<section class="section bg-light" id="challenges">
-    <div class="container">
-        <h2 class="text-center mb-5">Real Transformations - Our Challenge Winners</h2>
-        <p class="text-center lead mb-5">See incredible results from real people like you!</p>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <!-- 1: 34kg -  -->
-            <div class="col">
-                <div class="card border-0 shadow">
-                   <a href="https://raw.githubusercontent.com/rkrajiv777-cmyk/sbj-lifestyle-hub/main/Before-after%20(17).jpg" data-lightbox="winners" data-title="23kg Bad Fat Reduced">
-    <img src="https://raw.githubusercontent.com/rkrajiv777-cmyk/sbj-lifestyle-hub/main/Before-after%20(17).jpg" class="card-img-top" alt="23kg Bad Fat Reduced">
-</a>
-                    <div class="card-body text-center">
-                        <h5>1</h5>
-                        <p class="text-success fw-bold">34kg Fat Loss + 6 Inch Reduction</p>
-                    </div>
-                </div>
-            </div>
-            <!-- 2: 23kg Bad Fat -->
-            <div class="col">
-                <div class="card border-0 shadow">
-                    <img src="https://raw.githubusercontent.com/rkrajiv777-cmyk/sbj-lifestyle-hub/main/Before-after%20(17).jpg" class="card-img-top" alt="23kg Bad Fat Reduced">
-                    <div class="card-body text-center">
-                        <h5>Amazing Result</h5>
-                        <p class="text-success fw-bold">23kg Bad Fat Reduced</p>
-                    </div>
-                </div>
-            </div>
-            <!-- 3: 2 30kg -->
-            <div class="col">
-                <div class="card border-0 shadow">
-                    <img src="https://raw.githubusercontent.com/rkrajiv777-cmyk/sbj-lifestyle-hub/main/Before-after%20(7).jpg" class="card-img-top" alt="2">
-                    <div class="card-body text-center">
-                        <h5>2</h5>
-                        <p class="text-success fw-bold">30kg Fat Reduce</p>
-                    </div>
-                </div>
-            </div>
-            
-                    </div>
-                </div>
-            </div>
-            <!-- 5: 03 15kg -->
-            <div class="col">
-                <div class="card border-0 shadow">
-                    <img src="https://raw.githubusercontent.com/rkrajiv777-cmyk/sbj-lifestyle-hub/main/Before-after%20(1).jpg" class="card-img-top" alt="Pinki Dhiman">
-                    <div class="card-body text-center">
-                        <h5>03</h5>
-                        <p class="text-success fw-bold">15kg in 3 Months</p>
-                    </div>
-                </div>
-            </div>
-            <!-- 6: Couple Transformation -->
-            <div class="col">
-                <div class="card border-0 shadow">
-                    <img src="https://raw.githubusercontent.com/rkrajiv777-cmyk/sbj-lifestyle-hub/main/Before-after%20(10).jpg" class="card-img-top" alt="Couple Goals">
-                    <div class="card-body text-center">
-                        <h5>Couple Transformation</h5>
-                        <p class="text-success fw-bold">Fat to Fit Together</p>
-                    </div>
-                </div>
-            </div>
-            <!-- 7: 06 8kg -->
-            <div class="col">
-                <div class="card border-0 shadow">
-                    <img src="https://raw.githubusercontent.com/rkrajiv777-cmyk/sbj-lifestyle-hub/main/Before-after%20(4).jpg" class="card-img-top" alt="Gurjeet">
-                    <div class="card-body text-center">
-                        <h5>06</h5>
-                        <p class="text-success fw-bold">8kg in 23 Days</p>
-                    </div>
-                </div>
-            </div>
-            <!-- 8: 07 16kg -->
-            <div class="col">
-                <div class="card border-0 shadow">
-                    <img src="https://raw.githubusercontent.com/rkrajiv777-cmyk/sbj-lifestyle-hub/main/Before-after%20(5).jpg" class="card-img-top" alt="Suman Lata Yadav">
-                    <div class="card-body text-center">
-                        <h5>07</h5>
-                        <p class="text-success fw-bold">16kg Fat Loss</p>
-                    </div>
-                </div>
-            </div>
-            <!-- 9: Sumani Lata 73kg to 58kg -->
-            <div class="col">
-                <div class="card border-0 shadow">
-                    <img src="https://raw.githubusercontent.com/rkrajiv777-cmyk/sbj-lifestyle-hub/main/Before-after%20(13).jpg" class="card-img-top" alt="Sumani Lata">
-                    <div class="card-body text-center">
-                        <h5>Sumani Lata</h5>
-                        <p class="text-success fw-bold">73kg → 58kg</p>
-                    </div>
-                </div>
-            </div>
-            <!-- 10: Seema Gupta 14kg -->
-            <div class="col">
-                <div class="card border-0 shadow">
-                    <img src="https://raw.githubusercontent.com/rkrajiv777-cmyk/sbj-lifestyle-hub/main/Before-after%20(16).jpg" class="card-img-top" alt="Seema Gupta">
-                    <div class="card-body text-center">
-                        <h5>Seema Gupta</h5>
-                        <p class="text-success fw-bold">14kg Fat Loss</p>
-                    </div>
-                </div>
-            </div>
-            <!-- 11: Day 1 to Day 21 -->
-            <div class="col">
-                <div class="card border-0 shadow">
-                    <img src="https://raw.githubusercontent.com/rkrajiv777-cmyk/sbj-lifestyle-hub/main/Before-after%20(11).jpg" class="card-img-top" alt="21 Days Challenge">
-                    <div class="card-body text-center">
-                        <h5>21 Days Result</h5>
-                        <p class="text-success fw-bold">Visible Change in 21 Days</p>
-                    </div>
-                </div>
-            </div>
-            <!-- 12: Archana Dhali -->
-            <div class="col">
-                <div class="card border-0 shadow">
-                    <img src="https://raw.githubusercontent.com/rkrajiv777-cmyk/sbj-lifestyle-hub/main/Before-after%20(6).jpg" class="card-img-top" alt="Archana Dhali">
-                    <div class="card-body text-center">
-                        <h5>Archana Dhali</h5>
-                        <p class="text-success fw-bold">Incredible Transformation</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="text-center mt-5">
-            <a href="https://instagram.com/rajiv.kfit" class="btn btn-primary btn-lg">Join the Next 21 Days Challenge</a>
-        </div>
+      <div style="margin-top:10px;max-height:520px;overflow:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th class="right">MRP</th>
+              <th class="right">VP</th>
+              <th class="right"></th>
+            </tr>
+          </thead>
+          <tbody id="productsBody"></tbody>
+        </table>
+      </div>
     </div>
-</section>
 
-    <!-- No-1 Super Star of the Month -->
-    <section class="section superstar" id="superstar">
-        <div class="container text-center">
-            <h2 class="mb-4">No-1 Super Star of the Month</h2>
-            <img src="https://images.unsplash.com/photo-1550345332-09e3ac987658?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="rounded-circle mb-3" alt="Super Star Pic" style="width:200px;height:200px;">
-            <h4>Rahul T. - December 2025</h4>
-            <p class="lead">Consistent effort aur dedication se jeeta yeh award. Inspire others!</p>
+    <!-- CART -->
+    <div class="card">
+      <div class="row noPrint" style="justify-content:space-between;">
+        <h3 style="margin:0;">Cart</h3>
+        <div class="row">
+          <button id="clearCart" class="danger">Clear</button>
+          <button id="printBtn" class="btnPrimary">Invoice / Print</button>
         </div>
-    </section>
+      </div>
 
-    <!-- Newsletter -->
-    <section class="section bg-dark text-white text-center" id="newsletter">
-        <div class="container">
-            <h2>Subscribe to Our Newsletter</h2>
-            <p class="lead">Latest updates, challenges aur tips direct inbox mein!</p>
-            <form class="row g-3 justify-content-center mt-4">
-                <div class="col-auto">
-                    <input type="email" class="form-control" placeholder="Your Email">
-                </div>
-                <div class="col-auto">
-                    <button type="submit" class="btn btn-light">Subscribe</button>
-                </div>
-            </form>
+      <div class="noPrint" style="margin-top:10px;max-height:520px;overflow:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th class="right">Qty</th>
+              <th>Slab</th>
+              <th class="right">Custom %</th>
+              <th class="right">Final</th>
+              <th class="right">VP</th>
+              <th class="right"></th>
+            </tr>
+          </thead>
+          <tbody id="cartBody"></tbody>
+        </table>
+      </div>
+
+      <div class="card noPrint" style="margin-top:10px;background:#fafafa;">
+        <div class="row">
+          <div style="flex:1;min-width:220px;">
+            <div><b>Total VP:</b> <span id="totalVP">0</span></div>
+            <div><b>Subtotal:</b> ₹ <span id="subtotal">0</span></div>
+            <div><b>Shipping:</b> ₹ <span id="shipOut">0</span></div>
+            <div style="font-size:18px;"><b>Grand Total:</b> ₹ <span id="grandTotal">0</span></div>
+          </div>
+
+          <div style="flex:1;min-width:240px;">
+            <div class="row">
+              <div style="flex:1;">
+                <div class="muted">Default Slab (new items)</div>
+                <select id="defaultSlab" style="width:100%;">
+                  <option value="15">15%</option>
+                  <option value="25">25%</option>
+                  <option value="35">35%</option>
+                  <option value="42" selected>42%</option>
+                  <option value="50">50%</option>
+                </select>
+              </div>
+              <div style="flex:1;">
+                <div class="muted">Manual Shipping</div>
+                <input id="manualShipping" type="number" min="0" step="1" value="0" style="width:100%;"/>
+              </div>
+            </div>
+            <div class="muted" style="margin-top:6px;">
+              Shipping rule admin se aa sakta hai. Manual shipping agar bhar doge to override ho jayega.
+            </div>
+          </div>
         </div>
-    </section>
-    <!-- Registration Form Section -->
-<section class="section bg-light" id="register">
-    <div class="container">
-        <h2 class="text-center mb-4">Join the 21 Days Challenge Now!</h2>
-        <p class="text-center lead mb-5">Fill the form below to start your transformation journey with SBJ Lifestyle Hub</p>
-        <div class="ratio ratio-1x1" style="max-height: 900px;">
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeTlPtIKh3-ywGAxCzXhVBJOlF81YKr9AKKUNWeOuXlbXAABg/viewform?embedded=true" 
-                    width="100%" 
-                    height="100%" 
-                    frameborder="0" 
-                    marginheight="0" 
-                    marginwidth="0" 
-                    style="border-radius: 15px;">
-                Loading…
-            </iframe>
+      </div>
+
+      <!-- PRINT INVOICE AREA -->
+      <div class="invoiceArea">
+        <div style="padding:18px;">
+          <h2 style="margin:0;">Invoice</h2>
+          <div class="muted">Generated from MLM Price + VP Cart</div>
+          <hr/>
+          <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th class="right">Qty</th>
+                <th class="right">Unit</th>
+                <th class="right">Total</th>
+                <th class="right">VP</th>
+              </tr>
+            </thead>
+            <tbody id="printBody"></tbody>
+          </table>
+          <hr/>
+          <div class="right">
+            <div><b>Total VP:</b> <span id="p_vp">0</span></div>
+            <div><b>Subtotal:</b> ₹ <span id="p_sub">0</span></div>
+            <div><b>Shipping:</b> ₹ <span id="p_ship">0</span></div>
+            <div style="font-size:18px;"><b>Grand Total:</b> ₹ <span id="p_grand">0</span></div>
+          </div>
+          <div class="muted" style="margin-top:14px;">
+            *Slab prices admin list se aate hain. Custom % ho to MRP se calculate hota hai.
+          </div>
         </div>
-        <p class="text-center mt-4 text-muted small">Form not loading? <a href="https://docs.google.com/forms/d/e/1FAIpQLSeTlPtIKh3-ywGAxCzXhVBJOlF81YKr9AKKUNWeOuXlbXAABg/viewform" target="_blank">Click here to open directly</a>.</p>
+      </div>
+
     </div>
-</section>
+  </div>
 
-    <!-- Footer -->
-    <footer class="py-5 text-center">
-        <div class="container">
-            <p>&copy; 2025 SBJ Lifestyle Hub. All Rights Reserved. Inspired by @rajiv.kfit</p>
-            <p>Follow us: Instagram | Facebook | YouTube</p>
-        </div>
-    </footer>
+<script>
+/* ------------------ STORAGE ------------------ */
+const KEY_PRODUCTS = "mlm_products_v2";
+const KEY_CART     = "mlm_cart_v2";
+const KEY_SETTINGS = "mlm_settings_v2";
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Lightbox JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
-    <!-- Floating WhatsApp Button -->
-<a href="https://wa.me/917973359934?text=Hello%20SBJ%20Lifestyle%20Hub%21%0AI%20saw%20your%20amazing%20transformations%20and%20want%20to%20start%20my%20own%20journey.%20Please%20guide%20me%20about%20the%2021%20Days%20Challenge." target="_blank" class="whatsapp-float">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Chat on WhatsApp" width="60" height="60">
-</a>
+const SLABS = [15,25,35,42,50];
 
-<style>
-.whatsapp-float {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 40px;
-    right: 40px;
-    background-color: #25d366;
-    color: #FFF;
-    border-radius: 50px;
-    text-align: center;
-    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-    z-index: 1000;
-    transition: all 0.3s ease;
+const DEFAULT_PRODUCTS = [
+  {
+    id: crypto.randomUUID(),
+    name: "Sample Product",
+    vp: 10,
+    mrp: 1000,
+    slabPrices: {"15":850,"25":750,"35":650,"42":580,"50":500}
+  }
+];
+
+const DEFAULT_SETTINGS = {
+  shipping_mode: "flat",     // flat | free_above
+  shipping_flat: 0,
+  shipping_free_above: 0
+};
+
+function safeParse(s, fallback){ try{ return JSON.parse(s); }catch{ return fallback; } }
+function num(x){ return Number(x)||0; }
+function money(x){ return Math.round(num(x)); }
+function clamp(n, a, b){ return Math.max(a, Math.min(b, n)); }
+function esc(s){ return String(s).replace(/[&<>"']/g, m => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[m])); }
+
+function loadProducts(){
+  const p = safeParse(localStorage.getItem(KEY_PRODUCTS), null);
+  if(!Array.isArray(p) || p.length===0){
+    localStorage.setItem(KEY_PRODUCTS, JSON.stringify(DEFAULT_PRODUCTS));
+    return DEFAULT_PRODUCTS;
+  }
+  // ensure slabPrices exists
+  p.forEach(x => { if(!x.slabPrices) x.slabPrices = {}; });
+  return p;
 }
-.whatsapp-float:hover {
-    transform: scale(1.15);
-    box-shadow: 2px 2px 20px rgba(0,0,0,0.4);
+function saveProducts(list){ localStorage.setItem(KEY_PRODUCTS, JSON.stringify(list)); }
+
+function loadCart(){ return safeParse(localStorage.getItem(KEY_CART), []); }
+function saveCart(c){ localStorage.setItem(KEY_CART, JSON.stringify(c)); }
+
+function loadSettings(){
+  const s = safeParse(localStorage.getItem(KEY_SETTINGS), null);
+  if(!s){
+    localStorage.setItem(KEY_SETTINGS, JSON.stringify(DEFAULT_SETTINGS));
+    return DEFAULT_SETTINGS;
+  }
+  return {...DEFAULT_SETTINGS, ...s};
 }
-.whatsapp-float img {
-    margin-top: 8px;
-    filter: brightness(0) invert(1);
+
+/* ------------------ PRICE LOGIC ------------------ */
+function unitPrice(product, slabPct, customPct){
+  // custom % -> MRP based
+  if(customPct !== "" && customPct !== null && customPct !== undefined){
+    const pct = clamp(num(customPct), 0, 95);
+    return num(product.mrp) * (1 - pct/100);
+  }
+  // slab fixed price
+  const sp = product.slabPrices?.[String(slabPct)];
+  if(sp !== undefined && sp !== null && sp !== ""){
+    return num(sp);
+  }
+  // fallback: % from MRP
+  return num(product.mrp) * (1 - num(slabPct)/100);
 }
-@media (max-width: 768px) {
-    .whatsapp-float {
-        width: 55px;
-        height: 55px;
-        bottom: 20px;
-        right: 20px;
+
+function calcTotals(products, cart){
+  let subtotal = 0;
+  let totalVP = 0;
+
+  for(const item of cart){
+    const p = products.find(x => x.id === item.productId);
+    if(!p) continue;
+
+    const qty = Math.max(1, parseInt(item.qty||1, 10));
+    const slabPct = num(item.slabPct) || 42;
+    const u = unitPrice(p, slabPct, item.customPct);
+    subtotal += u * qty;
+    totalVP += num(p.vp) * qty;
+  }
+
+  const settings = loadSettings();
+  const manualShip = num(document.getElementById("manualShipping").value);
+  let shipping = 0;
+
+  if(manualShip > 0){
+    shipping = manualShip;
+  }else{
+    if(settings.shipping_mode === "free_above"){
+      shipping = subtotal >= num(settings.shipping_free_above) ? 0 : num(settings.shipping_flat);
+    }else{
+      shipping = num(settings.shipping_flat);
     }
-    .whatsapp-float img {
-        width: 35px;
-        height: 35px;
-        margin-top: 10px;
-    }
+  }
+
+  return { subtotal, totalVP, shipping, grand: subtotal + shipping };
 }
-</style>
+
+/* ------------------ UI ------------------ */
+let products = loadProducts();
+let cart = loadCart();
+
+const productsBody = document.getElementById("productsBody");
+const cartBody = document.getElementById("cartBody");
+const searchEl = document.getElementById("search");
+const defaultSlabEl = document.getElementById("defaultSlab");
+
+function renderProducts(){
+  const q = (searchEl.value||"").toLowerCase().trim();
+  const list = products.filter(p => p.name.toLowerCase().includes(q));
+
+  document.getElementById("pCount").textContent = list.length;
+
+  productsBody.innerHTML = "";
+  for(const p of list){
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td><b>${esc(p.name)}</b><div class="mini">Slab prices saved in admin</div></td>
+      <td class="right">₹ ${money(p.mrp)}</td>
+      <td class="right">${num(p.vp).toFixed(2)}</td>
+      <td class="right"><button class="btnPrimary">Add</button></td>
+    `;
+    tr.querySelector("button").onclick = () => addToCart(p.id);
+    productsBody.appendChild(tr);
+  }
+}
+
+function slabOptions(selected){
+  return SLABS.map(s => `<option value="${s}" ${num(selected)===s?"selected":""}>${s}%</option>`).join("");
+}
+
+function renderCart(){
+  cartBody.innerHTML = "";
+
+  for(let i=0;i<cart.length;i++){
+    const item = cart[i];
+    const p = products.find(x => x.id === item.productId);
+    if(!p) continue;
+
+    const qty = Math.max(1, parseInt(item.qty||1,10));
+    const slabPct = num(item.slabPct)||42;
+    const u = unitPrice(p, slabPct, item.customPct);
+    const lineTotal = u * qty;
+    const lineVP = num(p.vp) * qty;
+
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>
+        <b>${esc(p.name)}</b>
+        <div class="mini">MRP ₹${money(p.mrp)} | VP ${num(p.vp).toFixed(2)}</div>
+        <div class="mini">Unit: ₹${money(u)} (slab/custom)</div>
+      </td>
+      <td class="right"><input type="number" min="1" step="1" value="${qty}" style="width:74px;"></td>
+      <td><select>${slabOptions(slabPct)}</select></td>
+      <td class="right"><input type="number" min="0" max="95" step="0.1" value="${item.customPct ?? ""}" placeholder="-" style="width:92px;"></td>
+      <td class="right">₹ ${money(lineTotal)}</td>
+      <td class="right">${lineVP.toFixed(2)}</td>
+      <td class="right"><button class="danger">Remove</button></td>
+    `;
+
+    const qtyInp = tr.querySelectorAll("input")[0];
+    const customInp = tr.querySelectorAll("input")[1];
+    const slabSel = tr.querySelector("select");
+    const rmBtn = tr.querySelector("button");
+
+    qtyInp.oninput = () => {
+      cart[i].qty = Math.max(1, parseInt(qtyInp.value||"1",10));
+      saveCart(cart); renderCart(); renderTotals();
+    };
+    slabSel.onchange = () => {
+      cart[i].slabPct = num(slabSel.value);
+      saveCart(cart); renderCart(); renderTotals();
+    };
+    customInp.oninput = () => {
+      const v = customInp.value;
+      cart[i].customPct = (v==="" ? "" : num(v));
+      saveCart(cart); renderCart(); renderTotals();
+    };
+    rmBtn.onclick = () => {
+      cart.splice(i,1);
+      saveCart(cart); renderCart(); renderTotals();
+    };
+
+    cartBody.appendChild(tr);
+  }
+}
+
+function renderTotals(){
+  const t = calcTotals(products, cart);
+  document.getElementById("totalVP").textContent = t.totalVP.toFixed(2);
+  document.getElementById("subtotal").textContent = money(t.subtotal);
+  document.getElementById("shipOut").textContent = money(t.shipping);
+  document.getElementById("grandTotal").textContent = money(t.grand);
+  renderPrintInvoice(t);
+}
+
+function renderPrintInvoice(totals){
+  const printBody = document.getElementById("printBody");
+  printBody.innerHTML = "";
+
+  for(const item of cart){
+    const p = products.find(x => x.id === item.productId);
+    if(!p) continue;
+
+    const qty = Math.max(1, parseInt(item.qty||1,10));
+    const slabPct = num(item.slabPct)||42;
+    const u = unitPrice(p, slabPct, item.customPct);
+    const lineTotal = u * qty;
+    const lineVP = num(p.vp) * qty;
+
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${esc(p.name)}</td>
+      <td class="right">${qty}</td>
+      <td class="right">₹ ${money(u)}</td>
+      <td class="right">₹ ${money(lineTotal)}</td>
+      <td class="right">${lineVP.toFixed(2)}</td>
+    `;
+    printBody.appendChild(tr);
+  }
+
+  document.getElementById("p_vp").textContent = totals.totalVP.toFixed(2);
+  document.getElementById("p_sub").textContent = money(totals.subtotal);
+  document.getElementById("p_ship").textContent = money(totals.shipping);
+  document.getElementById("p_grand").textContent = money(totals.grand);
+}
+
+/* ------------------ ACTIONS ------------------ */
+function addToCart(productId){
+  const existing = cart.find(x => x.productId === productId && (x.customPct==="" || x.customPct===null || x.customPct===undefined));
+  if(existing){
+    existing.qty = Math.max(1, parseInt(existing.qty||1,10)) + 1;
+  }else{
+    cart.push({
+      productId,
+      qty: 1,
+      slabPct: num(defaultSlabEl.value)||42,
+      customPct: "" // empty means slab price used
+    });
+  }
+  saveCart(cart);
+  renderCart(); renderTotals();
+}
+
+document.getElementById("reloadBtn").onclick = () => {
+  products = loadProducts();
+  renderProducts();
+  renderCart();
+  renderTotals();
+};
+
+document.getElementById("clearCart").onclick = () => {
+  cart = [];
+  saveCart(cart);
+  renderCart();
+  renderTotals();
+};
+
+document.getElementById("printBtn").onclick = () => window.print();
+
+searchEl.oninput = renderProducts;
+document.getElementById("manualShipping").oninput = renderTotals;
+
+/* ------------------ INIT ------------------ */
+products = loadProducts();
+cart = loadCart();
+renderProducts();
+renderCart();
+renderTotals();
+</script>
 </body>
 </html>
