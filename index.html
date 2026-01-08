@@ -31,24 +31,25 @@
     }
   </style>
 </head>
-<body>
-<!-- ✅ ADMIN BUTTON (RIGHT PLACE) -->
-<div style="position:fixed; top:14px; right:14px; z-index:9999;">
-  <a href="./admin.html"
-     style="
-       padding:8px 14px;
-       background:#111;
-       color:#fff;
-       border-radius:999px;
-       text-decoration:none;
-       font-size:14px;
-     ">
-    Admin
-  </a>
-</div>
-<!-- ✅ ADMIN BUTTON END -->
 
-<h1>MLM Price + VP Cart</h1>
+<body>
+  <!-- ✅ ADMIN BUTTON (HIDE ON PRINT) -->
+  <div class="noPrint">
+    <div style="position:fixed; top:14px; right:14px; z-index:9999;">
+      <a href="./admin.html"
+         style="
+           padding:8px 14px;
+           background:#111;
+           color:#fff;
+           border-radius:999px;
+           text-decoration:none;
+           font-size:14px;
+         ">
+        Admin
+      </a>
+    </div>
+  </div>
+  <!-- ✅ ADMIN BUTTON END -->
 
   <div class="noPrint">
     <h1>MLM Price + VP Cart</h1>
@@ -217,12 +218,9 @@ function loadProducts(){
     localStorage.setItem(KEY_PRODUCTS, JSON.stringify(DEFAULT_PRODUCTS));
     return DEFAULT_PRODUCTS;
   }
-  // ensure slabPrices exists
   p.forEach(x => { if(!x.slabPrices) x.slabPrices = {}; });
   return p;
 }
-function saveProducts(list){ localStorage.setItem(KEY_PRODUCTS, JSON.stringify(list)); }
-
 function loadCart(){ return safeParse(localStorage.getItem(KEY_CART), []); }
 function saveCart(c){ localStorage.setItem(KEY_CART, JSON.stringify(c)); }
 
@@ -237,17 +235,14 @@ function loadSettings(){
 
 /* ------------------ PRICE LOGIC ------------------ */
 function unitPrice(product, slabPct, customPct){
-  // custom % -> MRP based
   if(customPct !== "" && customPct !== null && customPct !== undefined){
     const pct = clamp(num(customPct), 0, 95);
     return num(product.mrp) * (1 - pct/100);
   }
-  // slab fixed price
   const sp = product.slabPrices?.[String(slabPct)];
   if(sp !== undefined && sp !== null && sp !== ""){
     return num(sp);
   }
-  // fallback: % from MRP
   return num(product.mrp) * (1 - num(slabPct)/100);
 }
 
@@ -285,7 +280,7 @@ function calcTotals(products, cart){
 
 /* ------------------ UI ------------------ */
 let products = loadProducts();
-let cart = loadCart();
+let cart = safeParse(localStorage.getItem(KEY_CART), []);
 
 const productsBody = document.getElementById("productsBody");
 const cartBody = document.getElementById("cartBody");
@@ -422,7 +417,7 @@ function addToCart(productId){
       productId,
       qty: 1,
       slabPct: num(defaultSlabEl.value)||42,
-      customPct: "" // empty means slab price used
+      customPct: ""
     });
   }
   saveCart(cart);
